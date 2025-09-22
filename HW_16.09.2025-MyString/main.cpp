@@ -36,4 +36,17 @@ int main()
 	obj1.Print();
 
 	cout << obj1.MyStrCmp(obj3) << endl;
+
+	MyString obj5 = move(obj2);
+	obj5.Print();
+
+
+	MyString::PrintCount();
+	MyString obj6;;
+
+	MyString::PrintCount();
+
+	obj6.PrintCount();
+
+
 }

@@ -6,28 +6,33 @@ MyString::MyString()
 {
 	length = 80;
 	str = new char[length] {};
+	count++;
 }
 MyString::MyString(int size)
 {
 	length = size;
 	str = new char[length] {};
+	count++;
 }
 MyString::MyString(const char* st)
 {
 	length = strlen(st);
 	str = new char[length + 1];
 	strcpy_s(str, length + 1, st);
+	count++;
 }
 MyString::~MyString()
 {
 	delete[]str;
 	length = 0;
+	count--;
 }
 MyString::MyString(const MyString& obj)
 {
 	length = obj.length;
 	str = new char[length + 1];
 	strcpy_s(str, length + 1, obj.str);
+	count++;
 }
 
 void MyString::Print()
@@ -56,6 +61,17 @@ void MyString::MyStrcpy(MyString& obj)
 	length = obj.length;
 	str = new char[length + 1];
 	strcpy_s(str, length + 1, obj.str);
+}
+
+MyString::MyString(MyString&& obj)
+{
+	str = obj.str;
+	obj.str = nullptr;
+	length = obj.length;
+	obj.length = 0;
+	cout << "Move constructor!!\n";
+
+	count++;
 }
 
 int MyString::MyChr(char c)
@@ -88,7 +104,7 @@ void MyString::MyStrCat(MyString& b)
 void MyString::MyDelChr(char c)
 {
 	int count = 0;
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < length +1; i++)
 	{
 		if (str[i] == c)
 		{
@@ -99,7 +115,7 @@ void MyString::MyDelChr(char c)
 	int new_length = length - count;
 	char* new_str = new char[new_length + 1];
 	int j = 0;
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < length +1; i++)
 	{
 		if (str[i] != c)
 		{
@@ -107,7 +123,6 @@ void MyString::MyDelChr(char c)
 			j++;
 		}
 	}
-	new_str[new_length] = '\0';
 	delete[] str;
 	str = new_str;
 	length = new_length;
@@ -116,3 +131,9 @@ int MyString::MyStrCmp(MyString& b)
 {
 	return strcmp(str, b.str);
 }
+
+void MyString::PrintCount()
+{
+	cout << "Count => " << count << endl;
+}
+int MyString::count = 0;
