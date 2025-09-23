@@ -1,10 +1,10 @@
 #pragma once
 class MyString
 {
-	char* str; // указатель на строку
-	int length; // длина строки
+	char* str; 
+	int length; 
 	static int count;
-public: // методы класса
+public: 
 	MyString();
 	MyString(int size);
 	MyString(const char* st);
@@ -23,15 +23,8 @@ public: // методы класса
 
 	static void PrintCount();
 
-	//void MyStrcpy(MyString& obj);// копирование строки
-	//bool MyStrStr(const char* str);// поиск подстроки в строке
-	//int  MyChr(char c); // поиск символа в строке 
-						// (индекс найденого символа, либо -1)
-	//int MyStrLen();// возвращает длину строки
-	//void MyStrCat(MyString& b); // объединение строк
-	//void MyDelChr(char c); // удаляет указанный символ 
-	//int MyStrCmp(MyString& b); // сравнение строк 
-							// -1 - первая строка меньше чем вторая 
-							// 1 - первая больше чем вторая
-							// 0 - строки равны
+
+	MyString operator+ (const char* b);
+	MyString operator+ (MyString& obj);
+	MyString operator- (const char ch);
 };
