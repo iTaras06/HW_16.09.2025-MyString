@@ -104,7 +104,7 @@ void MyString::MyStrCat(MyString& b)
 void MyString::MyDelChr(char c)
 {
 	int count = 0;
-	for (int i = 0; i < length +1; i++)
+	for (int i = 0; i < length + 1; i++)
 	{
 		if (str[i] == c)
 		{
@@ -115,7 +115,7 @@ void MyString::MyDelChr(char c)
 	int new_length = length - count;
 	char* new_str = new char[new_length + 1];
 	int j = 0;
-	for (int i = 0; i < length +1; i++)
+	for (int i = 0; i < length + 1; i++)
 	{
 		if (str[i] != c)
 		{
@@ -137,3 +137,46 @@ void MyString::PrintCount()
 	cout << "Count => " << count << endl;
 }
 int MyString::count = 0;
+
+
+
+MyString MyString::operator+ (const char* b)
+{
+	MyString res(length + 1 + strlen(b) + 1);
+	strcpy_s(res.str, length + 1, str);
+	strcat_s(res.str, length + strlen(b) + 2, b);
+	return res;
+}
+
+MyString MyString::operator+ (MyString& obj)
+{
+	MyString res(length + 1 + strlen(obj.str) + 1);
+	strcpy_s(res.str, length + 1, str);
+	strcat_s(res.str, length + strlen(obj.str) + 2, obj.str);
+	return res;
+}
+
+MyString MyString::operator- (const char ch)
+{
+	int count = 0;
+	for (int i = 0; i < length + 1; i++)
+	{
+		if (str[i] == ch)
+		{
+			count++;
+		}
+	}
+	if (count == 0) return 0;
+	int new_length = length - count;
+	char* new_str = new char[new_length + 1];
+	int j = 0;
+	for (int i = 0; i < length + 1; i++)
+	{
+		if (str[i] != ch)
+		{
+			new_str[j] = str[i];
+			j++;
+		}
+	}
+	return new_str;
+}
