@@ -9,7 +9,7 @@ int main()
 
 	MyString obj2 = obj1;
 	obj2.Print();
-	
+
 	cout << obj1.MyStrStr("woy") << endl;
 	cout << obj1.MyStrStr("wor") << endl;
 	cout << obj1.MyStrStr("lo wo") << endl;
@@ -42,11 +42,23 @@ int main()
 
 
 	MyString::PrintCount();
-	MyString obj6;;
+	MyString obj6;
 
 	MyString::PrintCount();
 
 	obj6.PrintCount();
 
 
+	MyString obj7("Hello ");
+	obj7.Print();
+
+	MyString res1 = obj7 + "aiii_i";
+	res1.Print();
+
+	MyString obj8("world");
+	MyString res2 = obj7 + obj8;
+	res2.Print();
+
+	MyString res3 = obj7 - 'l';
+	res3.Print();
 }
