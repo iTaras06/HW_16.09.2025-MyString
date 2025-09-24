@@ -1,10 +1,10 @@
 #pragma once
 class MyString
 {
-	char* str; 
-	int length; 
+	char* str;
+	int length;
 	static int count;
-public: 
+public:
 	MyString();
 	MyString(int size);
 	MyString(const char* st);
@@ -27,4 +27,16 @@ public:
 	MyString operator+ (const char* b);
 	MyString operator+ (MyString& obj);
 	MyString operator- (const char ch);
+	
+	MyString& operator++ ();
+	MyString operator++(int);
+	MyString& operator--();
+	MyString operator--(int);
+	MyString& operator+= (const char* obj);
+	MyString& operator+= (const MyString& obj);
+	bool operator==(MyString& obj);
+	bool operator>(MyString& obj);
+
+	MyString& operator=(const MyString& obj);
+	MyString& operator=(MyString&& obj);
 };
