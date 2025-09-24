@@ -61,4 +61,36 @@ int main()
 
 	MyString res3 = obj7 - 'l';
 	res3.Print();
+
+	MyString a("Hello");
+	MyString b("world");
+
+	a++;
+	a.Print();
+
+	a--;
+	a.Print();
+
+	a += " world";
+	a.Print();
+
+	a += b;
+	a.Print();
+
+	cout << (a == b) << endl;
+	cout << (a > b) << endl;
+
+	MyString a1("Hello");
+	a1.Print();
+	MyString a2("world");
+	a2.Print();
+	a2 = a1;
+	a2.Print();
+
+	MyString a3("Hello");
+	a3.Print();
+	MyString a4("world");
+	a4.Print();
+	a4 = move(a3);
+	a4.Print();
 }
