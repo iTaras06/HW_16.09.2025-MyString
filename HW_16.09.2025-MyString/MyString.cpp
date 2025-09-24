@@ -180,3 +180,99 @@ MyString MyString::operator- (const char ch)
 	}
 	return new_str;
 }
+
+MyString MyString::operator++ (int)
+{
+	MyString temp(*this);
+	char* new_str = new char[length + 2];
+	strcpy_s(new_str, length + 1, str);
+	new_str[length] = ' ';
+	new_str[length + 1] = '\0';
+
+	delete[] str;
+	str = new_str;
+	length++;
+
+	return temp;
+}
+
+MyString MyString::operator--(int)
+{
+	MyString temp(*this);
+	str[length - 1] = '\0';
+	length--;
+	return temp;
+}
+
+MyString& MyString::operator+=(const char* s)
+{
+	int add_len = strlen(s);
+	char* new_str = new char[length + add_len + 1];
+	strcpy_s(new_str, length + 1, str);
+	strcat_s(new_str, length + add_len + 1, s);
+
+	delete[] str;
+	str = new_str;
+	length += add_len;
+
+	return *this;
+}
+
+MyString& MyString::operator+=(const MyString& obj)
+{
+	int new_length = length + obj.length;
+	char* new_str = new char[new_length + 1];
+
+	strcpy_s(new_str, length + 1, str);
+	strcat_s(new_str, new_length + 1, obj.str);
+
+	delete[] str;
+	str = new_str;
+	length = new_length;
+
+	return *this;
+}
+
+bool MyString::operator==(MyString& obj)
+{
+	return strcmp(str, obj.str) == 0;
+}
+
+bool MyString::operator>(MyString& obj)
+{
+	return strcmp(str, obj.str) > 0;
+}
+
+
+
+MyString& MyString::operator=(const MyString& obj)
+{
+	if (this == &obj)
+	{
+		return *this;
+	}
+
+	if (str != nullptr)
+	{
+		delete[] str;
+	}
+	str = new char[strlen(obj.str) + 1];
+	strcpy_s(str, strlen(obj.str) + 1, obj.str);
+	length = obj.length;
+	cout << "Copy =\n";
+	return *this;
+}
+
+MyString& MyString::operator=(MyString&& obj)
+{
+	if (str != nullptr)
+	{
+		delete[] str;
+	}
+	str = obj.str;
+	obj.str = nullptr;
+	length = obj.length;
+	obj.length = 0;
+
+	return *this;
+}
