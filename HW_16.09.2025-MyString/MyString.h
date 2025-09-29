@@ -23,7 +23,6 @@ public:
 
 	static void PrintCount();
 
-
 	MyString operator+ (const char* b);
 	MyString operator+ (MyString& obj);
 	MyString operator- (const char ch);
